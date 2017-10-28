@@ -10,6 +10,7 @@ import (
     "context"
     "os"
     "strings"
+    manuf "github.com/timest/gomanuf"
 )
 
 var log = logrus.New()
@@ -117,7 +118,7 @@ func init() {
 
 func localHost() {
     host, _ := os.Hostname()
-    data[ipNet.IP.String()] = Info{Mac: localHaddr, Hostname: strings.TrimSuffix(host, ".local"), Manuf: ManufSearch(localHaddr.String())}
+    data[ipNet.IP.String()] = Info{Mac: localHaddr, Hostname: strings.TrimSuffix(host, ".local"), Manuf: manuf.Search(localHaddr.String())}
 }
 
 func sendARP() {
