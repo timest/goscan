@@ -25,6 +25,7 @@ var data map[string]Info
 // 计时器，在一段时间没有新的数据写入data中，退出程序，反之重置计时器
 var t *time.Ticker
 var do chan string
+var iface string
 
 const (
     // 3秒的计时器
@@ -104,6 +105,7 @@ func setupNetInfo(f string) {
     if err != nil {
         log.Fatal("无法获取本地网络信息:", err)
     }
+  
     for _, it := range ifs {
         addr, _ := it.Addrs()
         for _, a := range addr {
