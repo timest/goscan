@@ -15,6 +15,15 @@
  * Display the IP address, MAC address, hostname and vendor associated
  * Using SMB(Windows devices) and mDNS(Apple devices) to detect hostname
  
+ 
+### Usage: ###
+
+```go
+$ go build main
+$ sudo ./main  
+or 
+$ sudo ./main -I en0
+```
 
 
 更多细节可以查看 [用Go开发可以内网活跃主机嗅探器](https://github.com/timest/goscan/issues/1)
