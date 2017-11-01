@@ -23,9 +23,9 @@ var data map[string]Info
 // 计时器，在一段时间没有新的数据写入data中，退出程序，反之重置计时器
 var t *time.Ticker
 var do chan string
+var iface string
 
 const (
-    iface = "en0"
     // 3秒的计时器
     START = "start"
     END = "end"
@@ -102,11 +102,12 @@ func init() {
         if ip, ok := a.(*net.IPNet); ok && !ip.IP.IsLoopback() {
             if ip.IP.To4() != nil {
                 ipNet = ip
-                it, err := net.InterfaceByIndex(i)
+                it, err := net.InterfaceByIndex(i + 1)
                 if err != nil {
                     log.Fatal("无法获取当前网络信息")
                 }
                 localHaddr = it.HardwareAddr
+                iface = it.Name
                 break
             }
         }
