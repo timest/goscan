@@ -8,6 +8,7 @@ import (
     "net"
     "context"
     manuf "github.com/timest/gomanuf"
+    "strings"
 )
 
 func listenARP(ctx context.Context) {
@@ -26,9 +27,13 @@ func listenARP(ctx context.Context) {
             arp := p.Layer(layers.LayerTypeARP).(*layers.ARP)
             if arp.Operation == 2 {
                 mac := net.HardwareAddr(arp.SourceHwAddress)
-                pushData(ParseIP(arp.SourceProtAddress).String(), mac, "", manuf.Search(mac.String()))
-                go sendMdns(ParseIP(arp.SourceProtAddress), mac)
-                go sendNbns(ParseIP(arp.SourceProtAddress), mac)
+                m := manuf.Search(mac.String())
+                pushData(ParseIP(arp.SourceProtAddress).String(), mac, "", m)
+                if strings.Contains(m, "Apple") {
+                    go sendMdns(ParseIP(arp.SourceProtAddress), mac)
+                } else {
+                    go sendNbns(ParseIP(arp.SourceProtAddress), mac)
+                }
             }
         }
     }
