@@ -137,6 +137,9 @@ func sendARP() {
 }
 
 func main() {
+    if os.Getuid() != 0 {
+        log.Fatal("goscan must run as root.")
+    }
     flag.StringVar(&iface, "I", "", "Network interface name")
     flag.Parse()
     // 初始化 data
