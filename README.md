@@ -9,6 +9,8 @@
  * 利用SMB(Windows)和mDNS(Mac OS)嗅探内网主机名(hostname)
  * 利用MAC地址计算设备的厂商信息
  
+ 更多细节可以查看 [用Go开发可以内网活跃主机嗅探器](https://github.com/timest/goscan/issues/1)
+ 
 **Features:**
  * Scan the whole IPv4 address space
  * Scan your local network with ARP packets
@@ -25,5 +27,9 @@ or
 $ sudo ./main -I en0
 ```
 
+Goscan must run as **root**.
 
-更多细节可以查看 [用Go开发可以内网活跃主机嗅探器](https://github.com/timest/goscan/issues/1)
+Goscan work in Linux/Mac using [libpcap](http://www.tcpdump.org/) and on Windows with [WinPcap](https://www.winpcap.org/install/). 
+
+If you need English comments, check this fork: https://github.com/skoky/goscan/tree/english 
+
