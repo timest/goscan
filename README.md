@@ -20,10 +20,17 @@
  
 ### Usage: ###
 
-```go
-$ go build main
+```sh
+# install dependencies
+$ go get github.com/Sirupsen/logrus
+$ go get github.com/timest/gomanuf
+
+# build
+$ go build
+
+# execute
 $ sudo ./main  
-or 
+# or
 $ sudo ./main -I en0
 ```
 
